@@ -23,5 +23,8 @@
     <string name="movie_edited">Movie Edited!</string>
     <string name="added_to_favorites">"Added to Favorites"</string>
     <string name="removed_from_favorites">"Removed from Favorites"</string>
+    <string name="home">Home</string>
+    <string name="favorites">Favorites</string>
+    <string name="no_favorites_yet">No favorites yet</string>
 
 </resources>

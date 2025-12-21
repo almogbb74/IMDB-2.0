@@ -9,7 +9,7 @@
     tools:context=".ui.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/home_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="8dp"
@@ -17,21 +17,5 @@
         android:layoutDirection="ltr"
         android:clipToPadding="false"
         tools:listitem="@layout/item_movie" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddMovie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="55dp"
-        android:layout_marginEnd="12dp"
-        android:clickable="true"
-        android:contentDescription="@string/add_movie_fab"
-        android:focusable="true"
-        android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/imdb_gold"
-        app:tint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

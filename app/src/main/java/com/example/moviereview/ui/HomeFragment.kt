@@ -45,12 +45,14 @@ class HomeFragment : Fragment() {
         val movieAdapter = MovieAdapter(
             onMovieClick = { movie ->
                 // Navigate to Details (Passing the ID)
-                val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(movieId = movie.id)
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(movieId = movie.id)
                 findNavController().navigate(action)
             },
             onEditClick = { movie ->
                 // Navigate to Add/Edit (Passing the ID to edit)
-                val action = HomeFragmentDirections.actionHomeFragmentToAddEditMovieFragment(movieId = movie.id)
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToAddEditMovieFragment(movieId = movie.id)
                 findNavController().navigate(action)
             },
             onFavoriteClick = { movie ->
@@ -58,20 +60,24 @@ class HomeFragment : Fragment() {
                 val updatedMovie = movie.copy(isFavorite = !movie.isFavorite)
                 viewModel.update(updatedMovie)
 
-                val msg = if (updatedMovie.isFavorite) getString(R.string.added_to_favorites) else getString(R.string.removed_from_favorites)
+                val msg =
+                    if (updatedMovie.isFavorite) getString(R.string.added_to_favorites) else getString(
+                        R.string.removed_from_favorites
+                    )
                 binding.root.showSnackbar(msg)
             }
         )
 
         // Setup RecyclerView
-        binding.recyclerView.apply {
+        binding.homeRecyclerView.apply {
             adapter = movieAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
 
         // Attach Swipe-to-Delete
-        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+        val itemTouchHelper = ItemTouchHelper(object :
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -89,24 +95,18 @@ class HomeFragment : Fragment() {
                 showDeleteConfirmationDialog(movie, position, movieAdapter)
             }
         })
-        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+        itemTouchHelper.attachToRecyclerView(binding.homeRecyclerView)
 
         // Observe Database Data
         viewModel.allMovies.observe(viewLifecycleOwner) { movies ->
             movieAdapter.submitList(movies)
         }
-
-        // FAB Click -> Add New Movie
-        binding.fabAddMovie.setOnClickListener {
-            // Navigate to Add/Edit with ID -1 (New Movie)
-            val action = HomeFragmentDirections.actionHomeFragmentToAddEditMovieFragment(movieId = -1)
-            findNavController().navigate(action)
-        }
     }
 
     private fun showDeleteConfirmationDialog(movie: Movie, position: Int, adapter: MovieAdapter) {
         // Inflate the Custom Layout
-        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_delete_movie, null)
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_delete_movie, null)
 
         // Build the Alert Dialog using the custom view
         val builder = AlertDialog.Builder(requireContext())

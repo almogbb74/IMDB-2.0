@@ -47,5 +47,15 @@
         android:id="@+id/favoritesFragment"
         android:name="com.example.moviereview.ui.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_addEditMovieFragment"
+            app:destination="@id/addEditMovieFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_to_addEditMovieFragment"
+        app:destination="@id/addEditMovieFragment" />
 </navigation>
