@@ -48,7 +48,7 @@ class MovieDetailsFragment : Fragment() {
                 return@observe
             }
 
-            // 3. Bind Data to UI
+            // Bind Data to UI
             binding.tvDetailTitle.text = movie.title
 
             // Rating Bar and Score Text

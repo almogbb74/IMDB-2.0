@@ -29,10 +29,10 @@
         app:tint="@color/text_secondary" />
 
     <TextView
+        android:layoutDirection="ltr"
         android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_username"
         android:clickable="true"
         android:focusable="true"
         android:layout_marginTop="5dp"
@@ -44,6 +44,9 @@
         android:textColor="@color/imdb_gold"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:drawableEndCompat="@drawable/ic_edit"
+        android:drawablePadding="6dp"
+        app:drawableTint="@color/text_secondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_profile_avatar"
