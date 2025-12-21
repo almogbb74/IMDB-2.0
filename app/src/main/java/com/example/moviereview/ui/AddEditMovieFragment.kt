@@ -25,20 +25,20 @@ class AddEditMovieFragment : Fragment() {
     private var _binding: FragmentAddEditMovieBinding? = null
     private val binding get() = _binding!!
 
-    // 1. Get arguments passed from HomeFragment (contains the movieId)
+    // Get arguments passed from HomeFragment (contains the movieId)
     private val args: AddEditMovieFragmentArgs by navArgs()
 
-    // 2. Initialize ViewModel
+    // Initialize ViewModel
     private val viewModel: MovieViewModel by viewModels {
         MovieViewModelFactory((requireActivity().application as MovieApplication).repository)
     }
 
     // Variable to hold the selected image URI
     private var selectedImageUri: String? = null
-    private var isCurrentFavorite: Boolean = false
+    private var isCurrentMovieFavorite: Boolean = false
 
 
-    // 3. Image Picker Setup (Modern Android Way)
+    // Image Picker Setup
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
@@ -74,7 +74,7 @@ class AddEditMovieFragment : Fragment() {
 
         val movieId = args.movieId
 
-        // CHECK MODE: Are we Adding (-1) or Editing (> -1)?
+        // CHECK MODE: Are we Adding (-1) or Editing (=/ -1)?
         if (movieId != -1) {
             // EDIT MODE: Change title and load data
             binding.tvScreenTitle.text = getString(R.string.edit_movie)
@@ -88,7 +88,7 @@ class AddEditMovieFragment : Fragment() {
                 binding.etReview.setText(movie.reviewText)
                 binding.ratingBar.rating = movie.score
                 selectedImageUri = movie.imageUri
-                isCurrentFavorite = movie.isFavorite
+                isCurrentMovieFavorite = movie.isFavorite
 
                 // Load existing image
                 if (!selectedImageUri.isNullOrEmpty()) {
@@ -124,7 +124,7 @@ class AddEditMovieFragment : Fragment() {
 
         // Create the Movie Object
         // If currentId is -1 (New), we let Room auto-generate the ID (pass 0)
-        // If currentId is real (Edit), we reuse it to update the existing row
+        // If currentId is not -1 (Edit), we reuse it to update the existing row
         val movie = Movie(
             id = if (currentId == -1) 0 else currentId,
             title = title,
@@ -132,7 +132,7 @@ class AddEditMovieFragment : Fragment() {
             reviewText = review,
             score = score,
             imageUri = selectedImageUri,
-            isFavorite = isCurrentFavorite
+            isFavorite = isCurrentMovieFavorite
         )
 
         // Save to Database
@@ -141,10 +141,6 @@ class AddEditMovieFragment : Fragment() {
             binding.root.showSnackbar(getString(R.string.movie_added))
 
         } else {
-            // If we are editing, we need to preserve the 'isFavorite' status!
-            // We can do this by re-fetching the old movie inside the ViewModel,
-            // OR simpler: Just save it and let the user re-favorite.
-            // (For this assignment, resetting or simple update is usually fine).
             viewModel.update(movie)
             binding.root.showSnackbar(getString(R.string.movie_edited))
         }

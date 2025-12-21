@@ -58,4 +58,12 @@
     <action
         android:id="@+id/action_global_to_addEditMovieFragment"
         app:destination="@id/addEditMovieFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.moviereview.ui.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+    </fragment>
 </navigation>

@@ -36,7 +36,7 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Initialize Adapter
+        // Initialize Adapter
         val movieAdapter = MovieAdapter(
             onMovieClick = { movie ->
                 // Navigate to Details
@@ -55,19 +55,19 @@ class FavoritesFragment : Fragment() {
                 val updatedMovie = movie.copy(isFavorite = !movie.isFavorite)
                 viewModel.update(updatedMovie)
 
-                // Show snackbar (Items will vanish from list automatically)
+                // Show snackbar
                 binding.root.showSnackbar("Removed from Favorites")
             }
         )
 
-        // 2. Setup RecyclerView
+        // Setup RecyclerView
         binding.favoritesRecyclerView.apply {
             adapter = movieAdapter
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
         }
 
-        // 3. Observe ONLY Favorites
+        // Observe ONLY Favorites
         viewModel.favoriteMovies.observe(viewLifecycleOwner) { movies ->
             movieAdapter.submitList(movies)
 

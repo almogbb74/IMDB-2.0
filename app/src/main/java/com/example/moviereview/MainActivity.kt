@@ -2,7 +2,6 @@ package com.example.moviereview
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -22,25 +21,25 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 1. Setup Navigation
+        // Setup Navigation
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // 2. Setup Manual Clicks (Home & Favorites)
+        // Setup Manual Clicks (Home & Favorites)
         binding.btnHome.setOnClickListener {
             if (navController.currentDestination?.id != R.id.homeFragment) {
                 navController.navigate(R.id.homeFragment)
             }
         }
 
-        binding.btnFavorites.setOnClickListener {
-            if (navController.currentDestination?.id != R.id.favoritesFragment) {
-                navController.navigate(R.id.favoritesFragment)
+        binding.btnProfile.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.profileFragment) {
+                navController.navigate(R.id.profileFragment)
             }
         }
 
-        // 3. Setup Global FAB Click
+        // Setup Global FAB Click
         binding.fabAdd.setOnClickListener {
             if (navController.currentDestination?.id != R.id.addEditMovieFragment) {
                 val action = NavGraphDirections.actionGlobalToAddEditMovieFragment(movieId = -1)
@@ -48,31 +47,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 4. Update UI when page changes (Highlight the active icon)
+        // Update UI when page changes (Highlight the active icon)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             // Reset colors to Grey
             val greyColor = ContextCompat.getColor(this, R.color.text_secondary)
             val goldColor = ContextCompat.getColor(this, R.color.imdb_gold)
 
             setIconColor(binding.btnHome, greyColor)
-            setIconColor(binding.btnFavorites, greyColor)
+            setIconColor(binding.btnProfile, greyColor) // Reset Profile Color
 
             when (destination.id) {
                 R.id.homeFragment -> {
-                    // Show Bar, Highlight Home
                     binding.bottomAppBar.visibility = View.VISIBLE
                     binding.fabAdd.show()
                     setIconColor(binding.btnHome, goldColor)
                 }
-                R.id.favoritesFragment -> {
-                    // Show Bar, Highlight Favorites
+                R.id.profileFragment -> {
+                    // NEW: Highlight Profile Icon
                     binding.bottomAppBar.visibility = View.VISIBLE
                     binding.fabAdd.show()
-                    setIconColor(binding.btnFavorites, goldColor)
+                    setIconColor(binding.btnProfile, goldColor)
                 }
                 else -> {
-                    // Hide Bar on other screens (Add/Edit, Details)
-                    Log.d("MainActivity", "Hiding BottomAppBar on ${destination.label}")
+                    // Hide Bar on other screens (Add/Edit, Details, Favorites)
                     binding.bottomAppBar.visibility = View.GONE
                     binding.fabAdd.hide()
                 }

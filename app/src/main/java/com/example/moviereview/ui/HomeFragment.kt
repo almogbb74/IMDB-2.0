@@ -91,7 +91,7 @@ class HomeFragment : Fragment() {
                 val position = viewHolder.adapterPosition
                 val movie = movieAdapter.currentList[position]
 
-                // Show Confirmation Dialog (Required by assignment)
+                // Show Confirmation Dialog
                 showDeleteConfirmationDialog(movie, position, movieAdapter)
             }
         })
@@ -141,7 +141,7 @@ class HomeFragment : Fragment() {
 
         // Handle "Back Press" or "Click Outside" dismissal
         dialog.setOnCancelListener {
-            // If they click outside or press back, we ALSO need to restore the item!
+            // If they click outside or press back, we ALSO need to restore the item
             adapter.notifyItemChanged(position)
         }
 
