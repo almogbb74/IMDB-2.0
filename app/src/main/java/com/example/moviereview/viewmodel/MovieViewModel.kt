@@ -11,6 +11,11 @@ import kotlinx.coroutines.launch
 
 class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
 
+    // We will use viewModel: MovieViewModel by viewModels because although activityViewModels lifecycle
+    // is the life cycle of the entire app (activity), its better for us to use viewModels for each
+    // individual fragments, since we take our data directly from the ROOM and fragments wont share
+    // data with each other- and for that reason we use viewModels.
+
     // LiveData to be observed by the Home Fragment
     val allMovies: LiveData<List<Movie>> = repository.allMovies
 
