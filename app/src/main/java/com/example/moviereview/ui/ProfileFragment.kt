@@ -59,10 +59,14 @@ class ProfileFragment : Fragment() {
             }
         }
 
-        // Handle Favorites click (same as before)
+        // Handle Favorites click
         binding.cardFavorites.setOnClickListener {
             val action = ProfileFragmentDirections.actionProfileFragmentToFavoritesFragment()
             findNavController().navigate(action)
+        }
+
+        binding.cardSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_settingsFragment)
         }
 
         // Handle Click on Name to Edit

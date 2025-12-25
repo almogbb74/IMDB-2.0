@@ -118,7 +118,7 @@ class AddEditMovieFragment : Fragment() {
 
         // Validation
         if (title.isEmpty()) {
-            binding.etTitle.error = "Title is required"
+            binding.etTitle.error = getString(R.string.title_required)
             return
         }
 

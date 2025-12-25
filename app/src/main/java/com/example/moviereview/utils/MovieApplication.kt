@@ -15,7 +15,7 @@ class MovieApplication : Application() {
             MovieDatabase::class.java,
             "movie_database"
         )
-            // .allowMainThreadQueries() // Uncomment this ONLY if you get stuck, but we are using Coroutines so we don't need it!
+            // We used coroutines, so .allowMainThreadQueries() was not called here
             .build()
     }
 

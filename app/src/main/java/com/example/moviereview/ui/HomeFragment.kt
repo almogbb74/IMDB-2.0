@@ -135,7 +135,7 @@ class HomeFragment : Fragment() {
         btnDelete.setOnClickListener {
             // User confirmed: Delete from DB
             viewModel.delete(movie)
-            binding.root.showSnackbar("Movie deleted successfully")
+            binding.root.showSnackbar(getString(R.string.movie_deleted))
             dialog.dismiss()
         }
 

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.MovieReview" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+    <style name="Theme.MovieReview" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorError">@color/imdb_gold</item>
+    </style>
 </resources>

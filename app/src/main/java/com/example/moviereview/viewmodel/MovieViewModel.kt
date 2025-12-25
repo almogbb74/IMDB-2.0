@@ -42,7 +42,7 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
 }
 
 // The Factory
-// We need this boiler-plate code because our ViewModel keeps a reference
+// We need this because our ViewModel keeps a reference
 // to the Repository, and Android needs to know how to inject it.
 
 class MovieViewModelFactory(private val repository: MovieRepository) : ViewModelProvider.Factory {

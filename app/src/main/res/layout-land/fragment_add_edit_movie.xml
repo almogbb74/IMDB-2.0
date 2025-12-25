@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_dark">
+
+    <TextView
+        android:id="@+id/tv_screen_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/add_movie"
+        android:textColor="@color/imdb_gold"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/imdb_gold"
+        app:layout_constraintTop_toBottomOf="@id/tv_screen_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_divider">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="24dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <EditText
+                android:id="@+id/et_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_input_field"
+                android:hint="@string/movie_title"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
+                android:padding="12dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                app:layout_constraintEnd_toStartOf="@id/guideline_center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_input_field"
+                android:hint="@string/description"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:padding="12dp"
+                android:gravity="top"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                app:layout_constraintEnd_toStartOf="@id/guideline_center"
+                app:layout_constraintStart_toStartOf="@id/et_title"
+                app:layout_constraintTop_toBottomOf="@id/et_title" />
+
+            <EditText
+                android:id="@+id/et_review"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_input_field"
+                android:hint="@string/review"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:padding="12dp"
+                android:gravity="top"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                app:layout_constraintEnd_toStartOf="@id/guideline_center"
+                app:layout_constraintStart_toStartOf="@id/et_title"
+                app:layout_constraintTop_toBottomOf="@id/et_description" />
+
+
+            <TextView
+                android:id="@+id/tv_rating_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/your_rating"
+                android:textColor="@color/text_secondary"
+                app:layout_constraintStart_toEndOf="@id/guideline_center"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:progressTint="@color/imdb_gold"
+                android:secondaryProgressTint="@color/imdb_gold"
+                app:layout_constraintStart_toStartOf="@id/tv_rating_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_rating_label"
+                style="?android:attr/ratingBarStyleSmall"
+                android:scaleX="1.2"
+                android:scaleY="1.2"
+                android:transformPivotX="0dp"/>
+
+            <ImageView
+                android:id="@+id/iv_movie_poster_preview"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="5dp"
+                android:contentDescription="@string/movie_poster"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_upload"
+                app:tint="@color/imdb_gold"
+                app:layout_constraintStart_toStartOf="@id/tv_rating_label"
+                app:layout_constraintTop_toBottomOf="@id/ratingBar" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/tap_to_select_poster"
+                android:textColor="@color/text_secondary"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster_preview"
+                app:layout_constraintStart_toEndOf="@id/iv_movie_poster_preview"
+                app:layout_constraintTop_toTopOf="@id/iv_movie_poster_preview" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_save_movie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_button"
+                app:backgroundTint="@null"
+                android:text="@string/save_movie"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline_center"
+                app:layout_constraintTop_toBottomOf="@id/iv_movie_poster_preview" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

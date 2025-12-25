@@ -1,5 +1,6 @@
 package com.example.moviereview
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,10 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.moviereview.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase))
+    }
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -26,10 +31,10 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Setup Manual Clicks (Home & Favorites)
+        // Setup Manual Clicks (Home & Profile)
         binding.btnHome.setOnClickListener {
             if (navController.currentDestination?.id != R.id.homeFragment) {
-                navController.navigate(R.id.homeFragment)
+                navController.popBackStack(R.id.homeFragment, false)
             }
         }
 
@@ -62,12 +67,14 @@ class MainActivity : AppCompatActivity() {
                     binding.fabAdd.show()
                     setIconColor(binding.btnHome, goldColor)
                 }
+
                 R.id.profileFragment -> {
                     // NEW: Highlight Profile Icon
                     binding.bottomAppBar.visibility = View.VISIBLE
                     binding.fabAdd.show()
                     setIconColor(binding.btnProfile, goldColor)
                 }
+
                 else -> {
                     // Hide Bar on other screens (Add/Edit, Details, Favorites)
                     binding.bottomAppBar.visibility = View.GONE
@@ -81,4 +88,5 @@ class MainActivity : AppCompatActivity() {
     private fun setIconColor(imageView: ImageView, color: Int) {
         ImageViewCompat.setImageTintList(imageView, ColorStateList.valueOf(color))
     }
+
 }

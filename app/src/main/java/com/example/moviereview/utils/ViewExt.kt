@@ -1,5 +1,3 @@
-@file:Suppress("SpellCheckingInspection")
-
 package com.example.moviereview.utils
 
 import android.view.View

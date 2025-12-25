@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moviereview.R
 import com.example.moviereview.utils.MovieApplication
 import com.example.moviereview.databinding.FragmentFavoritesBinding
 import com.example.moviereview.ui.adapters.MovieAdapter
@@ -56,7 +57,7 @@ class FavoritesFragment : Fragment() {
                 viewModel.update(updatedMovie)
 
                 // Show snackbar
-                binding.root.showSnackbar("Removed from Favorites")
+                binding.root.showSnackbar(getString(R.string.removed_from_favorites))
             }
         )
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">IMDB 2.0</string>
+    <string name="movie_poster" translatable="false">תמונת סרט</string>
+    <string name="edit_icon" translatable="false">ערוך</string>
+    <string name="favorites_icon" translatable="false">מועדפים</string>
+    <string name="add_movie_fab" translatable="false">הוסף סרט</string>
+    <string name="tap_to_select_poster" translatable="false">לחץ להוסיף תמונה</string>
+    <string name="save_movie" translatable="false">שמור</string>
+    <string name="add_movie" translatable="false">הוסף סרט</string>
+    <string name="movie_title" translatable="false">שם הסרט</string>
+    <string name="review" translatable="false">ביקורת</string>
+    <string name="description" translatable="false">תיאור</string>
+    <string name="your_rating" translatable="false">הדירוג שלך:</string>
+    <string name="edit_movie" translatable="false">ערוך סרט</string>
+    <string name="delete" translatable="false">מחק</string>
+    <string name="cancel" translatable="false">ביטול</string>
+    <string name="delete_movie" translatable="false">מחק סרט</string>
+    <string name="are_you_sure_you_want_to_delete_this_movie" translatable="false">האם אתה בטוח שברצונך למחוק את הסרט?</string>
+    <string name="dialog_confirm" translatable="false">אתה בטוח שברצונך למחוק את \'%1$s\'?</string>
+    <string name="movie_added" translatable="false">סרט נוסף!</string>
+    <string name="movie_edited" translatable="false">סרט נערך!</string>
+    <string name="added_to_favorites" translatable="false">"הוסף למועדפים"</string>
+    <string name="removed_from_favorites" translatable="false">"הוסר מהמעודפים"</string>
+    <string name="home" translatable="false">בית</string>
+    <string name="favorites" translatable="false">מועדפים</string>
+    <string name="no_favorites_yet" translatable="false">אין מעודפים</string>
+    <string name="profile" translatable="false">פרופיל</string>
+    <string name="user" translatable="false">משתמש</string>
+    <string name="reviewed" translatable="false">סוקרו</string>
+    <string name="average_rating" translatable="false">דירוג ממוצע</string>
+    <string name="settings" translatable="false">הגדרות</string>
+    <string name="edit_username" translatable="false">ערוך שם משתמש</string>
+    <string name="enter_name" translatable="false">הכנס שם</string>
+    <string name="save" translatable="false">שמור</string>
+    <string name="my_review" translatable="false">הביקורת שלי</string>
+    <string name="back_arrow" translatable="false">חזור</string>
+    <string name="english" translatable="false">English</string>
+    <string name="Hebrew" translatable="false">עברית</string>
+    <string name="app_language">שפת האפליקציה</string>
+    <string name="movie_deleted">הסרט הוסר בהצלחה</string>
+    <string name="title_required">נא הכנס את שם הסרט</string>
+</resources>
