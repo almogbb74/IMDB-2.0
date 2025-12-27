@@ -1,11 +1,13 @@
 package com.example.moviereview.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.moviereview.data.Movie
+import com.example.moviereview.data.MovieDatabase
 import com.example.moviereview.repository.MovieRepository
 import kotlinx.coroutines.launch
 
@@ -45,9 +47,17 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
 // We need this because our ViewModel keeps a reference
 // to the Repository, and Android needs to know how to inject it.
 
-class MovieViewModelFactory(private val repository: MovieRepository) : ViewModelProvider.Factory {
+class MovieViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MovieViewModel::class.java)) {
+
+            // Get the Singleton Database
+            val database = MovieDatabase.getDatabase(context)
+
+            // Create the Repository here
+            val repository = MovieRepository(database.movieDao())
+
             @Suppress("UNCHECKED_CAST")
             return MovieViewModel(repository) as T
         }

@@ -11,6 +11,7 @@ import androidx.core.widget.ImageViewCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.moviereview.databinding.ActivityMainBinding
+import com.example.moviereview.utils.LocaleHelper
 
 class MainActivity : AppCompatActivity() {
 

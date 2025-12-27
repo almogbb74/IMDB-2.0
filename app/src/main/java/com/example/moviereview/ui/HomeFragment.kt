@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.moviereview.utils.MovieApplication
 import com.example.moviereview.R
 import com.example.moviereview.data.Movie
 import com.example.moviereview.databinding.FragmentHomeBinding
@@ -27,7 +26,7 @@ class HomeFragment : Fragment() {
 
     // Initialize ViewModel using the Factory
     private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory((requireActivity().application as MovieApplication).repository)
+        MovieViewModelFactory(requireContext())
     }
 
     override fun onCreateView(

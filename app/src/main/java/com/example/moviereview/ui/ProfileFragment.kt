@@ -11,7 +11,6 @@ import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.moviereview.utils.MovieApplication
 import com.example.moviereview.R
 import com.example.moviereview.databinding.FragmentProfileBinding
 import com.example.moviereview.viewmodel.MovieViewModel
@@ -23,7 +22,7 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory((requireActivity().application as MovieApplication).repository)
+        MovieViewModelFactory(requireContext())
     }
 
     // Key for saving the name in SharedPreferences

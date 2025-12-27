@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.moviereview.utils.MovieApplication
 import com.example.moviereview.databinding.FragmentMovieDetailsBinding
 import com.example.moviereview.viewmodel.MovieViewModel
 import com.example.moviereview.viewmodel.MovieViewModelFactory
@@ -24,9 +23,8 @@ class MovieDetailsFragment : Fragment() {
     private val args: MovieDetailsFragmentArgs by navArgs()
 
     private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory((requireActivity().application as MovieApplication).repository)
+        MovieViewModelFactory(requireContext())
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

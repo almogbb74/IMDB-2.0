@@ -1,9 +1,9 @@
-package com.example.moviereview
+package com.example.moviereview.utils
 
 import android.content.Context
 import android.content.res.Configuration
-import java.util.Locale
 import androidx.core.content.edit
+import java.util.Locale
 
 object LocaleHelper {
 

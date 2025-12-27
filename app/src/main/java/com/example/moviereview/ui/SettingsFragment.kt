@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.moviereview.LocaleHelper
+import com.example.moviereview.utils.LocaleHelper
 import com.example.moviereview.MainActivity
 import com.example.moviereview.databinding.FragmentSettingsBinding
 

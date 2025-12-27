@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviereview.R
-import com.example.moviereview.utils.MovieApplication
 import com.example.moviereview.databinding.FragmentFavoritesBinding
 import com.example.moviereview.ui.adapters.MovieAdapter
 import com.example.moviereview.utils.showSnackbar
@@ -23,7 +22,7 @@ class FavoritesFragment : Fragment() {
 
     // Initialize ViewModel
     private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory((requireActivity().application as MovieApplication).repository)
+        MovieViewModelFactory(requireContext())
     }
 
     override fun onCreateView(

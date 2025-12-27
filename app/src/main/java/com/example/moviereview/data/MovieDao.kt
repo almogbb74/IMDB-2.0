@@ -7,7 +7,6 @@ import androidx.room.*
 interface MovieDao {
     // Suspend functions are running on a background thread and keeping the app smooth
 
-
     // Get all movies for the Home Screen (Ordered by newest first)
     @Query("SELECT * FROM movies_table ORDER BY id DESC")
     fun getAllMovies(): LiveData<List<Movie>>

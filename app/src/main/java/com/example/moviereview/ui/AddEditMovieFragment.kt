@@ -12,7 +12,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.moviereview.utils.MovieApplication
 import com.example.moviereview.R
 import com.example.moviereview.data.Movie
 import com.example.moviereview.databinding.FragmentAddEditMovieBinding
@@ -30,13 +29,13 @@ class AddEditMovieFragment : Fragment() {
 
     // Initialize ViewModel
     private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory((requireActivity().application as MovieApplication).repository)
+        MovieViewModelFactory(requireContext())
     }
+
 
     // Variable to hold the selected image URI
     private var selectedImageUri: String? = null
     private var isCurrentMovieFavorite: Boolean = false
-
 
     // Image Picker Setup
     private val pickImageLauncher =
