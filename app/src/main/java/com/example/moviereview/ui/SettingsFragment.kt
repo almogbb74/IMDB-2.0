@@ -32,7 +32,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding.btnHebrew.setOnClickListener {
-            setNewLocale("iw")
+            setNewLocale("iw") // iw is Hebrew
         }
     }
 

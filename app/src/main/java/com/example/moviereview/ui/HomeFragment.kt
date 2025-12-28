@@ -117,7 +117,7 @@ class HomeFragment : Fragment() {
         // Make the background transparent so our rounded CardView shows correctly
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        // Bind the Data (Title and Message)
+        // Initialize the message
         val tvMessage = dialogView.findViewById<android.widget.TextView>(R.id.tv_dialog_message)
         tvMessage.text = getString(R.string.dialog_confirm, movie.title)
 

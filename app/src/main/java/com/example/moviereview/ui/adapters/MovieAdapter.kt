@@ -18,7 +18,7 @@ class MovieAdapter(
 ) : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        // This inflates your finished item_movie.xml
+        // This inflates the layout item_movie.xml
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MovieViewHolder(binding)
     }
@@ -34,7 +34,7 @@ class MovieAdapter(
             // Set Title
             binding.tvMovieTitle.text = movie.title
 
-            // Set Rating (We keep the formatting simple: "9.0")
+            // Set Rating (format: "9.0")
             binding.tvMovieRating.text = movie.score.toString()
 
             // Load Image using Glide

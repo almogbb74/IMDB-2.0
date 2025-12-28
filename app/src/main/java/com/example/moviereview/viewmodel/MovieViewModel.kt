@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.moviereview.data.Movie
 import com.example.moviereview.data.MovieDatabase
@@ -43,9 +42,7 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     }
 }
 
-// The Factory
-// We need this because our ViewModel keeps a reference
-// to the Repository, and Android needs to know how to inject it.
+// The Factory (we will use this to create our ViewModel instance whenever and wherever we need it.)
 
 class MovieViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 

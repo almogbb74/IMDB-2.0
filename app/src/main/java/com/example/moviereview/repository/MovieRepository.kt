@@ -18,17 +18,17 @@ class MovieRepository(private val movieDao: MovieDao) {
         return movieDao.getMovie(id)
     }
 
-    // Insert (Must be suspend)
+    // Insert (Must be suspend since insertMovie is a suspended function)
     suspend fun insert(movie: Movie) {
         movieDao.insertMovie(movie)
     }
 
-    // Update (Must be suspend)
+    // Update (Must be suspend since updateMovie is a suspended function)
     suspend fun update(movie: Movie) {
         movieDao.updateMovie(movie)
     }
 
-    // Delete (Must be suspend)
+    // Delete (Must be suspend since deleteMovie is a suspended function)
     suspend fun delete(movie: Movie) {
         movieDao.deleteMovie(movie)
     }

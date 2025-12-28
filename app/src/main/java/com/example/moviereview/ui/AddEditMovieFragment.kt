@@ -86,8 +86,8 @@ class AddEditMovieFragment : Fragment() {
                 binding.etDescription.setText(movie.description)
                 binding.etReview.setText(movie.reviewText)
                 binding.ratingBar.rating = movie.score
-                selectedImageUri = movie.imageUri
-                isCurrentMovieFavorite = movie.isFavorite
+                selectedImageUri = movie.imageUri // Keep same image
+                isCurrentMovieFavorite = movie.isFavorite // Keep same favorite status
 
                 // Load existing image
                 if (!selectedImageUri.isNullOrEmpty()) {
