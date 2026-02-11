@@ -1,13 +1,27 @@
 package com.example.moviereview.repository
 
+import android.app.Application
 import androidx.lifecycle.LiveData
-import com.example.moviereview.data.Movie
-import com.example.moviereview.data.MovieDao
+import com.example.moviereview.data.api.RemoteActor
+import com.example.moviereview.data.api.RemoteMovie
+import com.example.moviereview.data.api.RetrofitClient
+import com.example.moviereview.data.api.TMDbService
+import com.example.moviereview.data.local.Movie
+import com.example.moviereview.data.local.MovieDao
+import com.example.moviereview.data.local.MovieDatabase
 
-class MovieRepository(private val movieDao: MovieDao) {
-    // Suspend functions are running on a background thread and keeping the app smooth
+class MovieRepository(application: Application) {
 
-    // Get all movies (we just pass the LiveData through)
+    private val movieDao: MovieDao
+    private val tmdbService: TMDbService
+
+    init {
+        val database = MovieDatabase.getDatabase(application)
+        movieDao = database.movieDao()
+        tmdbService = RetrofitClient.tmdbService
+    }
+
+    // Get all movies
     val allMovies: LiveData<List<Movie>> = movieDao.getAllMovies()
 
     // Get favorites
@@ -18,18 +32,33 @@ class MovieRepository(private val movieDao: MovieDao) {
         return movieDao.getMovie(id)
     }
 
-    // Insert (Must be suspend since insertMovie is a suspended function)
+    // Insert
     suspend fun insert(movie: Movie) {
         movieDao.insertMovie(movie)
     }
 
-    // Update (Must be suspend since updateMovie is a suspended function)
+    // Update
     suspend fun update(movie: Movie) {
         movieDao.updateMovie(movie)
     }
 
-    // Delete (Must be suspend since deleteMovie is a suspended function)
+    // Delete
     suspend fun delete(movie: Movie) {
         movieDao.deleteMovie(movie)
+    }
+
+    suspend fun getPopularMovies(apiKey: String): List<RemoteMovie>? {
+        val response = tmdbService.getPopularMovies(apiKey)
+        return if (response.isSuccessful) response.body()?.results else null
+    }
+
+    suspend fun getPopularActors(apiKey: String): List<RemoteActor>? {
+        val response = tmdbService.getPopularActors(apiKey)
+        return if (response.isSuccessful) response.body()?.results else null
+    }
+
+    suspend fun searchMovies(apiKey: String, query: String): List<RemoteMovie>? {
+        val response = tmdbService.searchMovies(apiKey, query)
+        return if (response.isSuccessful) response.body()?.results else null
     }
 }

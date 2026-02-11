@@ -20,46 +20,89 @@
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/surface_dark"
         app:fabAlignmentMode="center"
-        app:fabCradleMargin="6dp"
-        app:fabCradleRoundedCornerRadius="12dp"
+        app:fabCradleMargin="8dp"
+        app:fabCradleRoundedCornerRadius="16dp"
         app:fabCradleVerticalOffset="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/center_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
             <ImageView
                 android:id="@+id/btn_profile"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="40dp"
-                android:padding="8dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/profile"
+                android:padding="12dp"
                 android:src="@drawable/ic_person"
                 app:tint="@color/text_secondary"
-                android:contentDescription="@string/profile"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_discover"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:id="@+id/btn_discover"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="32dp"
+                android:contentDescription="@string/discover_movies"
+                android:padding="12dp"
+                android:src="@drawable/ic_discover"
+                app:tint="@color/text_secondary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toEndOf="@id/btn_profile"
+                app:layout_constraintEnd_toStartOf="@id/center_guideline"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <ImageView
                 android:id="@+id/btn_home"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="40dp"
-                android:padding="8dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:contentDescription="@string/home"
+                android:padding="12dp"
                 android:src="@drawable/ic_home"
                 app:tint="@color/text_secondary"
-                android:contentDescription="@string/home"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:focusable="true"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@id/center_guideline"
+                app:layout_constraintEnd_toStartOf="@+id/btn_favorites"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:id="@+id/btn_favorites"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/favorites"
+                android:padding="12dp"
+                android:src="@drawable/ic_heart"
+                app:tint="@color/text_secondary"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toEndOf="@id/btn_home"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />

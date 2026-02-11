@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Setup Manual Clicks (Home & Profile)
         binding.btnHome.setOnClickListener {
             if (navController.currentDestination?.id != R.id.homeFragment) {
                 navController.popBackStack(R.id.homeFragment, false)
@@ -53,6 +52,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.btnDiscover.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.discoverFragment) {
+                navController.navigate(R.id.discoverFragment)
+            }
+        }
+
+        binding.btnFavorites.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.favoritesFragment) {
+                navController.navigate(R.id.favoritesFragment)
+            }
+        }
+
         // Update UI when page changes (Highlight the active icon)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             // Reset colors to Grey
@@ -60,7 +71,9 @@ class MainActivity : AppCompatActivity() {
             val goldColor = ContextCompat.getColor(this, R.color.imdb_gold)
 
             setIconColor(binding.btnHome, greyColor)
-            setIconColor(binding.btnProfile, greyColor) // Reset Profile Color
+            setIconColor(binding.btnProfile, greyColor)
+            setIconColor(binding.btnFavorites, greyColor)
+            setIconColor(binding.btnDiscover, greyColor)
 
             when (destination.id) {
                 R.id.homeFragment -> {
@@ -70,10 +83,19 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.profileFragment -> {
-                    // NEW: Highlight Profile Icon
                     binding.bottomAppBar.visibility = View.VISIBLE
                     binding.fabAdd.show()
                     setIconColor(binding.btnProfile, goldColor)
+                }
+                R.id.discoverFragment -> {
+                    binding.bottomAppBar.visibility = View.VISIBLE
+                    binding.fabAdd.show()
+                    setIconColor(binding.btnDiscover, goldColor)
+                }
+                R.id.favoritesFragment -> {
+                    binding.bottomAppBar.visibility = View.VISIBLE
+                    binding.fabAdd.show()
+                    setIconColor(binding.btnFavorites, goldColor)
                 }
 
                 else -> {
@@ -82,6 +104,16 @@ class MainActivity : AppCompatActivity() {
                     binding.fabAdd.hide()
                 }
             }
+        }
+        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(binding.bottomAppBar) { view, insets ->
+            val systemBars = insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars())
+
+            // Adjust the bottom margin of the bar to sit above the nav buttons
+            val params = view.layoutParams as androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams
+            params.bottomMargin = systemBars.bottom
+            view.layoutParams = params
+
+            insets
         }
     }
 

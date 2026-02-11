@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviereview.R
-import com.example.moviereview.data.Movie
+import com.example.moviereview.data.local.Movie
 import com.example.moviereview.databinding.ItemMovieBinding
 
-class MovieAdapter(
+class LocalMovieAdapter(
     private val onMovieClick: (Movie) -> Unit,
     private val onEditClick: (Movie) -> Unit,
     private val onFavoriteClick: (Movie) -> Unit
-) : ListAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
+) : ListAdapter<Movie, LocalMovieAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         // This inflates the layout item_movie.xml

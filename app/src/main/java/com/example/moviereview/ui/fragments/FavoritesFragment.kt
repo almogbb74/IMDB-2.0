@@ -1,4 +1,4 @@
-package com.example.moviereview.ui
+package com.example.moviereview.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviereview.R
 import com.example.moviereview.databinding.FragmentFavoritesBinding
-import com.example.moviereview.ui.adapters.MovieAdapter
+import com.example.moviereview.ui.adapters.LocalMovieAdapter
 import com.example.moviereview.utils.showSnackbar
-import com.example.moviereview.viewmodel.MovieViewModel
-import com.example.moviereview.viewmodel.MovieViewModelFactory
+import com.example.moviereview.viewmodels.HomeViewModel
 
 class FavoritesFragment : Fragment() {
 
@@ -21,9 +20,7 @@ class FavoritesFragment : Fragment() {
     private val binding get() = _binding!!
 
     // Initialize ViewModel
-    private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory(requireContext())
-    }
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,17 +34,17 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize Adapter
-        val movieAdapter = MovieAdapter(
+        val movieAdapter = LocalMovieAdapter(
             onMovieClick = { movie ->
                 // Navigate to Details
                 val action =
-                    FavoritesFragmentDirections.actionFavoritesFragmentToMovieDetailsFragment(movie.id)
+                    FavoritesFragmentDirections.Companion.actionFavoritesFragmentToMovieDetailsFragment(movie.id)
                 findNavController().navigate(action)
             },
             onEditClick = { movie ->
                 // Navigate to Edit
                 val action =
-                    FavoritesFragmentDirections.actionFavoritesFragmentToAddEditMovieFragment(movie.id)
+                    FavoritesFragmentDirections.Companion.actionFavoritesFragmentToAddEditMovieFragment(movie.id)
                 findNavController().navigate(action)
             },
             onFavoriteClick = { movie ->

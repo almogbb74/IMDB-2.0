@@ -1,4 +1,4 @@
-package com.example.moviereview.ui
+package com.example.moviereview.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle

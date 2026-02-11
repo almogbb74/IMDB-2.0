@@ -1,4 +1,4 @@
-package com.example.moviereview.ui
+package com.example.moviereview.ui.fragments
 
 import android.app.AlertDialog
 import android.content.Context
@@ -13,17 +13,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.moviereview.R
 import com.example.moviereview.databinding.FragmentProfileBinding
-import com.example.moviereview.viewmodel.MovieViewModel
-import com.example.moviereview.viewmodel.MovieViewModelFactory
+import com.example.moviereview.viewmodels.HomeViewModel
+import java.util.Locale
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory(requireContext())
-    }
+    private val viewModel: HomeViewModel by viewModels()
 
     // Key for saving the name in SharedPreferences
     companion object {
@@ -52,7 +50,7 @@ class ProfileFragment : Fragment() {
             if (movies.isNotEmpty()) {
                 val avg = movies.map { it.score }.average()
                 binding.tvStatAvgScore.text =
-                    String.format(java.util.Locale.getDefault(), "%.1f", avg)
+                    String.format(Locale.getDefault(), "%.1f", avg)
             } else {
                 binding.tvStatAvgScore.text = "0.0"
             }
@@ -60,7 +58,7 @@ class ProfileFragment : Fragment() {
 
         // Handle Favorites click
         binding.cardFavorites.setOnClickListener {
-            val action = ProfileFragmentDirections.actionProfileFragmentToFavoritesFragment()
+            val action = ProfileFragmentDirections.Companion.actionProfileFragmentToFavoritesFragment()
             findNavController().navigate(action)
         }
 

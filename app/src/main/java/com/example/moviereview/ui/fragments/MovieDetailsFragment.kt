@@ -1,4 +1,4 @@
-package com.example.moviereview.ui
+package com.example.moviereview.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.moviereview.databinding.FragmentMovieDetailsBinding
-import com.example.moviereview.viewmodel.MovieViewModel
-import com.example.moviereview.viewmodel.MovieViewModelFactory
+import com.example.moviereview.viewmodels.HomeViewModel
 import java.util.Locale
 
 class MovieDetailsFragment : Fragment() {
@@ -22,9 +21,8 @@ class MovieDetailsFragment : Fragment() {
     // Get the arguments (movieId) passed from the Home/Favorites Fragment
     private val args: MovieDetailsFragmentArgs by navArgs()
 
-    private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory(requireContext())
-    }
+    private val viewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

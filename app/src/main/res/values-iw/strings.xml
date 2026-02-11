@@ -40,4 +40,11 @@
     <string name="app_language">שפת האפליקציה</string>
     <string name="movie_deleted">הסרט הוסר בהצלחה</string>
     <string name="title_required">נא הכנס את שם הסרט</string>
+    <string name="empty_home_message">אין עדיין סרטים.\nלחץ על ה + בשביל להוסיף סרט</string>
+    <string name="discover_movies">גלה סרטים</string>
+    <string name="actor_name">שם השחקן</string>
+    <string name="trending_movies">סרטים פופולאריים</string>
+    <string name="popular_actors">שחקנים פופולאריים</string>
+    <string name="search_movies">חפש סרטים…</string>
+
 </resources>

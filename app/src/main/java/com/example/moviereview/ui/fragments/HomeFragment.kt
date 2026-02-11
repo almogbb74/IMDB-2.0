@@ -1,10 +1,11 @@
-package com.example.moviereview.ui
+package com.example.moviereview.ui.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,12 +13,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviereview.R
-import com.example.moviereview.data.Movie
+import com.example.moviereview.data.local.Movie
 import com.example.moviereview.databinding.FragmentHomeBinding
-import com.example.moviereview.ui.adapters.MovieAdapter // Importing your new Adapter
+import com.example.moviereview.ui.adapters.LocalMovieAdapter // Importing your new Adapter
 import com.example.moviereview.utils.showSnackbar
-import com.example.moviereview.viewmodel.MovieViewModel
-import com.example.moviereview.viewmodel.MovieViewModelFactory
+import com.example.moviereview.viewmodels.HomeViewModel
 
 class HomeFragment : Fragment() {
 
@@ -25,9 +25,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     // Initialize ViewModel using the Factory
-    private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory(requireContext())
-    }
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,17 +39,17 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize Adapter
-        val movieAdapter = MovieAdapter(
+        val movieAdapter = LocalMovieAdapter(
             onMovieClick = { movie ->
                 // Navigate to Details (Passing the ID)
                 val action =
-                    HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(movieId = movie.id)
+                    HomeFragmentDirections.Companion.actionHomeFragmentToMovieDetailsFragment(movieId = movie.id)
                 findNavController().navigate(action)
             },
             onEditClick = { movie ->
                 // Navigate to Add/Edit (Passing the ID to edit)
                 val action =
-                    HomeFragmentDirections.actionHomeFragmentToAddEditMovieFragment(movieId = movie.id)
+                    HomeFragmentDirections.Companion.actionHomeFragmentToAddEditMovieFragment(movieId = movie.id)
                 findNavController().navigate(action)
             },
             onFavoriteClick = { movie ->
@@ -99,10 +97,19 @@ class HomeFragment : Fragment() {
         // Observe Database Data
         viewModel.allMovies.observe(viewLifecycleOwner) { movies ->
             movieAdapter.submitList(movies)
+            if (movies.isEmpty()) {
+                // Show Message, Hide List
+                binding.tvEmptyHome.visibility = View.VISIBLE
+                binding.homeRecyclerView.visibility = View.GONE
+            } else {
+                // Show List, Hide Message
+                binding.tvEmptyHome.visibility = View.GONE
+                binding.homeRecyclerView.visibility = View.VISIBLE
+            }
         }
     }
 
-    private fun showDeleteConfirmationDialog(movie: Movie, position: Int, adapter: MovieAdapter) {
+    private fun showDeleteConfirmationDialog(movie: Movie, position: Int, adapter: LocalMovieAdapter) {
         // Inflate the Custom Layout
         val dialogView =
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_delete_movie, null)
@@ -118,7 +125,7 @@ class HomeFragment : Fragment() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         // Initialize the message
-        val tvMessage = dialogView.findViewById<android.widget.TextView>(R.id.tv_dialog_message)
+        val tvMessage = dialogView.findViewById<TextView>(R.id.tv_dialog_message)
         tvMessage.text = getString(R.string.dialog_confirm, movie.title)
 
         // Handle Button Clicks

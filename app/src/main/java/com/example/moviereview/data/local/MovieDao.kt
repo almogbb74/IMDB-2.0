@@ -1,4 +1,4 @@
-package com.example.moviereview.data
+package com.example.moviereview.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

@@ -1,4 +1,4 @@
-package com.example.moviereview.ui
+package com.example.moviereview.ui.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -13,11 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.moviereview.R
-import com.example.moviereview.data.Movie
+import com.example.moviereview.data.local.Movie
 import com.example.moviereview.databinding.FragmentAddEditMovieBinding
 import com.example.moviereview.utils.showSnackbar
-import com.example.moviereview.viewmodel.MovieViewModel
-import com.example.moviereview.viewmodel.MovieViewModelFactory
+import com.example.moviereview.viewmodels.HomeViewModel
 
 class AddEditMovieFragment : Fragment() {
 
@@ -28,9 +27,7 @@ class AddEditMovieFragment : Fragment() {
     private val args: AddEditMovieFragmentArgs by navArgs()
 
     // Initialize ViewModel
-    private val viewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory(requireContext())
-    }
+    private val viewModel: HomeViewModel by viewModels()
 
 
     // Variable to hold the selected image URI

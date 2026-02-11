@@ -39,4 +39,10 @@
     <string name="app_language">App Language</string>
     <string name="movie_deleted">Movie deleted successfully</string>
     <string name="title_required">Title is required</string>
+    <string name="empty_home_message">No movies yet.\nTap the + button to add one.</string>
+    <string name="discover_movies">Discover Movies</string>
+    <string name="actor_name">Actor Name</string>
+    <string name="trending_movies">Trending Movies</string>
+    <string name="popular_actors">Popular Actors</string>
+    <string name="search_movies">Search movies…</string>
 </resources>
