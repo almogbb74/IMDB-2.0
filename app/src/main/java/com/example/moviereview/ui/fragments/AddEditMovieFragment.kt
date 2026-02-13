@@ -17,7 +17,9 @@ import com.example.moviereview.data.local.Movie
 import com.example.moviereview.databinding.FragmentAddEditMovieBinding
 import com.example.moviereview.utils.showSnackbar
 import com.example.moviereview.viewmodels.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddEditMovieFragment : Fragment() {
 
     private var _binding: FragmentAddEditMovieBinding? = null

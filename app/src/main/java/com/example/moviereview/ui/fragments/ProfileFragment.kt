@@ -14,8 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.moviereview.R
 import com.example.moviereview.databinding.FragmentProfileBinding
 import com.example.moviereview.viewmodels.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null

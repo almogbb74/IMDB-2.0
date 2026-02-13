@@ -16,6 +16,7 @@ lifecycleVersion = "2.10.0"
 glideVersion = "5.0.5"
 appcompat = "1.7.0"
 retrofit = "2.9.0"
+hilt = "2.51.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,9 +51,14 @@ androidx-lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-
 # Glide
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glideVersion" }
 
+# Hilt
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 

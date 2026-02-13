@@ -11,8 +11,10 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.moviereview.databinding.FragmentMovieDetailsBinding
 import com.example.moviereview.viewmodels.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
+@AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
 
     private var _binding: FragmentMovieDetailsBinding? = null

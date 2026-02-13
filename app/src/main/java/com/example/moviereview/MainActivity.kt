@@ -12,7 +12,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.moviereview.databinding.ActivityMainBinding
 import com.example.moviereview.utils.LocaleHelper
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun attachBaseContext(newBase: Context) {

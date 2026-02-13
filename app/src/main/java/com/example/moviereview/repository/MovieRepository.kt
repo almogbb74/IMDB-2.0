@@ -1,26 +1,20 @@
 package com.example.moviereview.repository
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import com.example.moviereview.data.api.RemoteActor
 import com.example.moviereview.data.api.RemoteMovie
-import com.example.moviereview.data.api.RetrofitClient
 import com.example.moviereview.data.api.TMDbService
 import com.example.moviereview.data.local.Movie
 import com.example.moviereview.data.local.MovieDao
-import com.example.moviereview.data.local.MovieDatabase
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MovieRepository(application: Application) {
-
-    private val movieDao: MovieDao
+@Singleton
+class MovieRepository @Inject constructor(
+    private val movieDao: MovieDao,
     private val tmdbService: TMDbService
-
-    init {
-        val database = MovieDatabase.getDatabase(application)
-        movieDao = database.movieDao()
-        tmdbService = RetrofitClient.tmdbService
-    }
-
+)
+{
     // Get all movies
     val allMovies: LiveData<List<Movie>> = movieDao.getAllMovies()
 

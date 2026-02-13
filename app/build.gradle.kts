@@ -2,8 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt)
     id("androidx.navigation.safeargs.kotlin")
-    id("com.google.devtools.ksp")}
+    id("com.google.devtools.ksp")
+    id("kotlin-kapt")
+}
+
 
 android {
     namespace = "com.example.moviereview"
@@ -71,4 +75,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+}
+
+kapt {
+    correctErrorTypes = true
 }

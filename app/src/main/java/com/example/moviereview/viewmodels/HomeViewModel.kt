@@ -1,18 +1,19 @@
 package com.example.moviereview.viewmodels
 
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviereview.data.local.Movie
 import com.example.moviereview.repository.MovieRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository: MovieRepository = MovieRepository(application)
-
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repository: MovieRepository
+) : ViewModel() {
     val allMovies: LiveData<List<Movie>> = repository.allMovies
     val favoriteMovies: LiveData<List<Movie>> = repository.favoriteMovies
 

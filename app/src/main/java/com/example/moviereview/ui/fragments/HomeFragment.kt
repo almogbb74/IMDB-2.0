@@ -18,7 +18,9 @@ import com.example.moviereview.databinding.FragmentHomeBinding
 import com.example.moviereview.ui.adapters.LocalMovieAdapter // Importing your new Adapter
 import com.example.moviereview.utils.showSnackbar
 import com.example.moviereview.viewmodels.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null

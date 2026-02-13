@@ -1,20 +1,22 @@
 package com.example.moviereview.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviereview.data.api.RemoteActor
 import com.example.moviereview.data.api.RemoteMovie
 import com.example.moviereview.repository.MovieRepository
 import com.example.moviereview.utils.Constants
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DiscoverViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = MovieRepository(application)
+@HiltViewModel
+class DiscoverViewModel @Inject constructor(
+    private val repository: MovieRepository
+) : ViewModel() {
 
     private val _trendingMovies = MutableLiveData<List<RemoteMovie>?>()
     val trendingMovies: LiveData<List<RemoteMovie>?> = _trendingMovies

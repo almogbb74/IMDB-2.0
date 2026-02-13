@@ -13,7 +13,9 @@ import com.example.moviereview.databinding.FragmentFavoritesBinding
 import com.example.moviereview.ui.adapters.LocalMovieAdapter
 import com.example.moviereview.utils.showSnackbar
 import com.example.moviereview.viewmodels.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null

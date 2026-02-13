@@ -14,7 +14,9 @@ import com.example.moviereview.ui.adapters.SearchMovieAdapter
 import com.example.moviereview.ui.adapters.TrendingActorAdapter
 import com.example.moviereview.ui.adapters.TrendingMovieAdapter
 import com.example.moviereview.viewmodels.DiscoverViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DiscoverFragment : Fragment() {
 
     private var _binding: FragmentDiscoverBinding? = null
@@ -25,7 +27,11 @@ class DiscoverFragment : Fragment() {
     private lateinit var actorAdapter: TrendingActorAdapter
     private lateinit var searchAdapter: SearchMovieAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentDiscoverBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -40,20 +46,22 @@ class DiscoverFragment : Fragment() {
     }
 
     private fun initAdapters() {
-        movieAdapter = TrendingMovieAdapter { /* Will handle later */ }
-        actorAdapter = TrendingActorAdapter { /* Will handle later */ }
-        searchAdapter = SearchMovieAdapter { /* Will handle later */ }
+        movieAdapter = TrendingMovieAdapter { }
+        actorAdapter = TrendingActorAdapter { }
+        searchAdapter = SearchMovieAdapter { }
     }
 
     private fun setupRecyclerViews() {
         binding.rvTrendingMovies.apply {
             adapter = movieAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
 
         binding.rvTrendingActors.apply {
             adapter = actorAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         }
 
         binding.rvSearchResults.apply {
