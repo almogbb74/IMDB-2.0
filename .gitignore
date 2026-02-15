@@ -34,3 +34,4 @@ google-services.json
 
 # Secrets
 app/src/main/java/com/example/moviereview/utils/Constants.kt
+AndroidManifest.xml

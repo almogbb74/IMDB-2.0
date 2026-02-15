@@ -45,4 +45,14 @@
     <string name="trending_movies">Trending Movies</string>
     <string name="popular_actors">Popular Actors</string>
     <string name="search_movies">Search movies…</string>
+    <string name="location_denied">Permission denied. Cannot find cinemas.</string>
+    <string name="fetching_gps">Fetching GPS</string>
+    <string name="no_internet">No internet connection</string>
+    <string name="find_cinemas_near_me">Find cinemas near me</string>
+    <string name="nearby_cinemas">Nearby Cinemas</string>
+    <string name="distance">Distance</string>
+    <string name="address">Address</string>
+    <string name="theater_name">Theater Name</string>
+
+
 </resources>

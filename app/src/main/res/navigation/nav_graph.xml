@@ -80,5 +80,12 @@
         <action
             android:id="@+id/action_discoverFragment_to_movieDetailsFragment"
             app:destination="@id/movieDetailsFragment" />
+        <action
+            android:id="@+id/action_discoverFragment_to_cinemasFragment"
+            app:destination="@id/cinemasFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cinemasFragment"
+        android:name="com.example.moviereview.ui.fragments.CinemasFragment"
+        android:label="CinemasFragment" />
 </navigation>

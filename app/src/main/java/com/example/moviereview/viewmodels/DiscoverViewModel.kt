@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviereview.data.api.RemoteActor
 import com.example.moviereview.data.api.RemoteMovie
-import com.example.moviereview.repository.MovieRepository
-import com.example.moviereview.utils.Constants
+import com.example.moviereview.repositories.MovieRepository
+import com.example.moviereview.BuildConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -38,8 +38,8 @@ class DiscoverViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
 
-            val moviesDeferred = async { repository.getPopularMovies(Constants.TMDB_API_KEY) }
-            val actorsDeferred = async { repository.getPopularActors(Constants.TMDB_API_KEY) }
+            val moviesDeferred = async { repository.getPopularMovies(BuildConfig.TMDB_API_KEY) }
+            val actorsDeferred = async { repository.getPopularActors(BuildConfig.TMDB_API_KEY) }
 
             val movies = moviesDeferred.await()
             val actors = actorsDeferred.await()
@@ -59,7 +59,7 @@ class DiscoverViewModel @Inject constructor(
 
         viewModelScope.launch {
             _isLoading.value = true
-            val results = repository.searchMovies(Constants.TMDB_API_KEY, query)
+            val results = repository.searchMovies(BuildConfig.TMDB_API_KEY, query)
             _searchResults.value = results
             _isLoading.value = false
         }

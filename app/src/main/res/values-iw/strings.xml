@@ -46,5 +46,16 @@
     <string name="trending_movies">סרטים פופולאריים</string>
     <string name="popular_actors">שחקנים פופולאריים</string>
     <string name="search_movies">חפש סרטים…</string>
+    <string name="location_denied">לא ניתנה הרשאה. לא ניתן לחפש בתי קולנוע.</string>
+    <string name="fetching_gps">מקבל מיקום</string>
+    <string name="no_internet">אין חיבור לרשת</string>
+    <string name="find_cinemas_near_me">מצא בתי קולנוע לידי</string>
+    <string name="nearby_cinemas">בתי קולנוע קרובים</string>
+    <string name="distance">מרחק</string>
+    <string name="address">כתובת</string>
+    <string name="theater_name">שם הקולנוע</string>
+
+
+
 
 </resources>

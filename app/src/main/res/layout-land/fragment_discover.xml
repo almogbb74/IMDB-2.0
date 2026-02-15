@@ -10,10 +10,9 @@
         android:id="@+id/search_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="64dp"
         android:background="@drawable/bg_search_view"
         app:iconifiedByDefault="false"
         app:queryHint="@string/search_movies"
@@ -25,6 +24,7 @@
         android:id="@+id/btn_find_cinemas"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/find_cinemas_near_me"
         android:src="@drawable/ic_location"
@@ -37,6 +37,7 @@
         android:id="@+id/dashboard_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_view">
@@ -52,15 +53,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/trending_movies"
                 android:textColor="@color/imdb_gold"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trending_movies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_trending_movie" />
@@ -68,17 +69,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/popular_actors"
                 android:textColor="@color/imdb_gold"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_trending_actors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_trending_actor" />
@@ -93,7 +94,7 @@
         android:padding="8dp"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
+        app:spanCount="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_view"
         tools:listitem="@layout/item_search_movie" />

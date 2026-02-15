@@ -89,11 +89,19 @@ class MainActivity : AppCompatActivity() {
                     binding.fabAdd.show()
                     setIconColor(binding.btnProfile, goldColor)
                 }
+
                 R.id.discoverFragment -> {
                     binding.bottomAppBar.visibility = View.VISIBLE
                     binding.fabAdd.show()
                     setIconColor(binding.btnDiscover, goldColor)
                 }
+
+                R.id.cinemasFragment -> {
+                    binding.bottomAppBar.visibility = View.VISIBLE
+                    binding.fabAdd.show()
+                    setIconColor(binding.btnDiscover, goldColor)
+                }
+
                 R.id.favoritesFragment -> {
                     binding.bottomAppBar.visibility = View.VISIBLE
                     binding.fabAdd.show()
@@ -108,10 +116,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
         androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(binding.bottomAppBar) { view, insets ->
-            val systemBars = insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars())
+            val systemBars =
+                insets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars())
 
             // Adjust the bottom margin of the bar to sit above the nav buttons
-            val params = view.layoutParams as androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams
+            val params =
+                view.layoutParams as androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams
             params.bottomMargin = systemBars.bottom
             view.layoutParams = params
 

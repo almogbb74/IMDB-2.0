@@ -1,18 +1,28 @@
 package com.example.moviereview.ui.fragments
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moviereview.R
 import com.example.moviereview.databinding.FragmentDiscoverBinding
 import com.example.moviereview.ui.adapters.SearchMovieAdapter
 import com.example.moviereview.ui.adapters.TrendingActorAdapter
 import com.example.moviereview.ui.adapters.TrendingMovieAdapter
+import com.example.moviereview.utils.showSnackbar
 import com.example.moviereview.viewmodels.DiscoverViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +37,70 @@ class DiscoverFragment : Fragment() {
     private lateinit var actorAdapter: TrendingActorAdapter
     private lateinit var searchAdapter: SearchMovieAdapter
 
+
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        when {
+            permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
+                // Precise location access granted.
+                navigateToCinemas()
+            }
+
+            permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
+                // Only approximate location access granted.
+                navigateToCinemas()
+            }
+
+            else -> {
+                // No location access granted.
+                binding.root.showSnackbar(getString(R.string.location_denied))
+            }
+        }
+    }
+
+    private fun onFindCinemasClicked() {
+        if (!isNetworkAvailable()) {
+            binding.root.showSnackbar(getString(R.string.no_internet))
+            return
+        }
+        val fineLoc = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+        val coarseLoc = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
+
+        if (fineLoc == PackageManager.PERMISSION_GRANTED || coarseLoc == PackageManager.PERMISSION_GRANTED) {
+            // Already have permission, Jump to the next step
+            navigateToCinemas()
+        } else {
+            // Need to ask the user
+            checkLocationPermissions()
+        }
+    }
+
+
+    // The function to trigger the permission dialog
+    private fun checkLocationPermissions() {
+        locationPermissionRequest.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        )
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager =
+            requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+
+
+    private fun navigateToCinemas() {
+        val action = DiscoverFragmentDirections.actionDiscoverFragmentToCinemasFragment()
+        findNavController().navigate(action)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,7 +112,7 @@ class DiscoverFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.btnFindCinemas.setOnClickListener { onFindCinemasClicked() }
         initAdapters()
         setupRecyclerViews()
         setupSearchView()

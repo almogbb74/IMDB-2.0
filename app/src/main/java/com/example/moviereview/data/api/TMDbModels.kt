@@ -1,6 +1,5 @@
 package com.example.moviereview.data.api
 
-import com.example.moviereview.data.local.Movie
 import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
@@ -17,16 +16,6 @@ data class RemoteMovie(
     @SerializedName("vote_average") val rating: Double,
     @SerializedName("release_date") val releaseDate: String?
 )
-fun RemoteMovie.toLocalMovie(): Movie {
-    return Movie(
-        id = this.id,
-        title = this.title,
-        description = this.overview,
-        imageUri = this.posterPath ?: "",
-        score = this.rating.toFloat() / 2,
-        reviewText = ""
-    )
-}
 
 // Wrapper for Actor Lists
 data class ActorResponse(

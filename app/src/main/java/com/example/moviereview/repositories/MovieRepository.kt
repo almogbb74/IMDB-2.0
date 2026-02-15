@@ -1,4 +1,4 @@
-package com.example.moviereview.repository
+package com.example.moviereview.repositories
 
 import androidx.lifecycle.LiveData
 import com.example.moviereview.data.api.RemoteActor

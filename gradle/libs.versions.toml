@@ -17,6 +17,8 @@ glideVersion = "5.0.5"
 appcompat = "1.7.0"
 retrofit = "2.9.0"
 hilt = "2.51.1"
+playServicesLocation = "21.3.0"
+googleMaps = "19.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,6 +56,10 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 # Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+# Play Services
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "googleMaps" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
