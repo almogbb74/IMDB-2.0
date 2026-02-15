@@ -35,7 +35,7 @@ class CinemasFragment : Fragment(), OnMapReadyCallback {
     private lateinit var googleMap: GoogleMap
 
     private lateinit var fusedLocationClient: com.google.android.gms.location.FusedLocationProviderClient
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Initialize the client
