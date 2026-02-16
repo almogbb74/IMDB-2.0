@@ -109,14 +109,13 @@ class CinemasFragment : Fragment(), OnMapReadyCallback {
 
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
             errorMsg?.let {
-                android.util.Log.e("CinemaDebug", it)
-                binding.root.showSnackbar(it) // Or use a Toast to see the error on screen
+                binding.root.showSnackbar(it) // Use a Snackbar to see the error on screen
             }
         }
     }
 
     private fun addCinemaMarkers(cinemas: List<PlaceResult>) {
-        // Check if the property has been initialized to prevent rotation crashes
+        // Check if the property has been initialized to prevent crashes (If we'll not check the app will crash when screen orientation is changed)
         if (::googleMap.isInitialized) {
             googleMap.clear()
             cinemas.forEach { cinema ->

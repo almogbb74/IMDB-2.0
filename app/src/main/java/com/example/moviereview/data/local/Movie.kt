@@ -9,7 +9,7 @@ data class Movie(
     val id: Int = 0,             // Unique ID for every movie
     val title: String,           // Movie Title
     val description: String,     // Plot summary
-    val reviewText: String,      // Your personal review
+    val reviewText: String,      // Personal review
     val score: Float,            // Rating (e.g., 4.5)
     val imageUri: String?,       // Path to the image on the phone (Nullable just in case)
     val isFavorite: Boolean = false // For the Favorites fragment

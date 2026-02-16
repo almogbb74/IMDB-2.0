@@ -42,7 +42,7 @@ class LocalMovieAdapter(
                 Glide.with(binding.root.context)
                     .load(movie.imageUri)
                     .centerCrop()
-                    .placeholder(android.R.drawable.ic_menu_gallery) // Fallback while loading
+                    .placeholder(android.R.drawable.ic_menu_gallery)
                     .into(binding.ivMoviePoster)
             } else {
                 // If no image, show a default grey background or icon

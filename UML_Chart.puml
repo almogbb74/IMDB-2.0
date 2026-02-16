@@ -1,0 +1,266 @@
+@startuml
+class com.example.moviereview.data.local.Movie {
+}
+class com.example.moviereview.ui.adapters.SearchMovieAdapter {
+}
+class com.example.moviereview.ui.adapters.SearchViewHolder {
+}
+class com.example.moviereview.ui.adapters.SearchDiffCallback {
++ void areItemsTheSame(RemoteMovie,RemoteMovie)
++ void areContentsTheSame(RemoteMovie,RemoteMovie)
+}
+
+class com.example.moviereview.viewmodels.HomeViewModel {
+}
+class com.example.moviereview.ui.fragments.SettingsFragment {
+- FragmentSettingsBinding? _binding
+-  binding
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onViewCreated(View,Bundle?)
+- void setNewLocale(String)
++ void onDestroyView()
+}
+
+
+class com.example.moviereview.ui.adapters.TrendingActorAdapter {
+}
+class com.example.moviereview.ui.adapters.ActorViewHolder {
+}
+class com.example.moviereview.ui.adapters.ActorDiffCallback {
++ void areItemsTheSame(RemoteActor,RemoteActor)
++ void areContentsTheSame(RemoteActor,RemoteActor)
+}
+
+interface com.example.moviereview.data.local.MovieDao {
++ LiveData<List<Movie>> getAllMovies()
++ LiveData<List<Movie>> getFavorites()
++ LiveData<Movie> getMovie(Int)
++ void insertMovie(Movie)
++ void updateMovie(Movie)
++ void deleteMovie(Movie)
+}
+
+interface com.example.moviereview.data.api.TMDbService {
++ void getPopularMovies(void)
++ void getPopularActors(void)
++ void searchMovies(void)
+}
+
+class com.example.moviereview.viewmodels.DiscoverViewModel {
+}
+class com.example.moviereview.ui.fragments.ProfileFragment$Companion {
+-  PREF_USER_NAME
+}
+
+class com.example.moviereview.ui.fragments.ProfileFragment {
+- FragmentProfileBinding? _binding
+-  binding
+- HomeViewModel viewModel
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onViewCreated(View,Bundle?)
+- void loadUserName()
+- void showEditNameDialog()
+- void saveUserName(String)
++ void onDestroyView()
+}
+
+
+class com.example.moviereview.data.api.MovieResponse {
+}
+class com.example.moviereview.data.api.RemoteMovie {
+}
+class com.example.moviereview.data.api.ActorResponse {
+}
+class com.example.moviereview.data.api.RemoteActor {
+}
+interface com.example.moviereview.data.api.PlacesApiService {
++ void getNearbyCinemas(void)
+}
+
+class com.example.moviereview.ui.adapters.CinemaAdapter$CinemaDiffCallback {
+}
+class com.example.moviereview.ui.adapters.CinemaAdapter$CinemaViewHolder {
+}
+class com.example.moviereview.ui.adapters.CinemaAdapter {
+- List<PlaceResult> cinemas
+- LatLng? userLocation
++ void setData(List<PlaceResult>,LatLng?)
++ CinemaViewHolder onCreateViewHolder(ViewGroup,Int)
++ void onBindViewHolder(CinemaViewHolder,Int)
++ void null()
++ void getItemCount()
+}
+
+
+class com.example.moviereview.viewmodels.CinemasViewModel {
+}
+class com.example.moviereview.ui.adapters.LocalMovieAdapter {
+}
+class com.example.moviereview.ui.adapters.MovieViewHolder {
++ void bind(Movie)
+}
+
+class com.example.moviereview.ui.adapters.MovieDiffCallback {
++ void areItemsTheSame(Movie,Movie)
++ void areContentsTheSame(Movie,Movie)
+}
+
+class com.example.moviereview.ui.adapters.TrendingMovieAdapter {
+}
+class com.example.moviereview.ui.adapters.MovieViewHolder {
+}
+class com.example.moviereview.ui.adapters.MovieDiffCallback {
++ void areItemsTheSame(RemoteMovie,RemoteMovie)
++ void areContentsTheSame(RemoteMovie,RemoteMovie)
+}
+
+class com.example.moviereview.ui.fragments.HomeFragment {
+- FragmentHomeBinding? _binding
+-  binding
+- HomeViewModel viewModel
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onViewCreated(View,Bundle?)
+- void showDeleteConfirmationDialog(Movie,Int,LocalMovieAdapter)
++ void onDestroyView()
+}
+
+
+class com.example.moviereview.ui.fragments.DiscoverFragment {
+- FragmentDiscoverBinding? _binding
+-  binding
+- DiscoverViewModel viewModel
+- TrendingMovieAdapter movieAdapter
+- TrendingActorAdapter actorAdapter
+- SearchMovieAdapter searchAdapter
+-  locationPermissionRequest
++ void null()
+- void onFindCinemasClicked()
+- void checkLocationPermissions()
+- Boolean isNetworkAvailable()
+- void navigateToCinemas()
++ void onCreateView(void,LayoutInflater,void,ViewGroup?,void,Bundle?)
++ void null()
++ void onViewCreated(View,Bundle?)
+- void initAdapters()
+- void setupRecyclerViews()
+- void observeViewModel()
+- void setupSearchView()
++ void onDestroyView()
+}
+
+
+class com.example.moviereview.ui.fragments.MovieDetailsFragment {
+- FragmentMovieDetailsBinding? _binding
+-  binding
+- MovieDetailsFragmentArgs args
+- HomeViewModel viewModel
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onViewCreated(View,Bundle?)
++ void onDestroyView()
+}
+
+
+class com.example.moviereview.data.local.MovieDatabase$Companion {
+- MovieDatabase? INSTANCE
++ MovieDatabase getDatabase(Context)
+}
+
+
+abstract class com.example.moviereview.data.local.MovieDatabase {
++ MovieDao movieDao()
+}
+
+class com.example.moviereview.data.di.NetworkModule {
++ Retrofit provideTMDbRetrofit()
++ TMDbService provideTMDbService(Retrofit)
++ Gson provideGson()
++ Retrofit providePlacesRetrofit(Gson)
++ PlacesApiService providePlacesApiService(Retrofit)
+}
+
+class com.example.moviereview.data.di.DatabaseModule {
++ MovieDatabase provideDatabase(Context)
++ MovieDao provideMovieDao(MovieDatabase)
+}
+
+class com.example.moviereview.ui.fragments.AddEditMovieFragment {
+- FragmentAddEditMovieBinding? _binding
+-  binding
+- AddEditMovieFragmentArgs args
+- HomeViewModel viewModel
+- String? selectedImageUri
+- Boolean isCurrentMovieFavorite
+-  pickImageLauncher
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onViewCreated(View,Bundle?)
+- void saveMovie(Int)
++ void onDestroyView()
+}
+
+
+class com.example.moviereview.data.api.PlacesResponse {
+}
+class com.example.moviereview.data.api.PlaceResult {
+}
+class com.example.moviereview.data.api.Geometry {
+}
+class com.example.moviereview.data.api.LocationLiteral {
+}
+class com.example.moviereview.ui.fragments.CinemasFragment {
+- FragmentCinemasBinding? _binding
+-  binding
+- CinemasViewModel viewModel
+-  cinemaAdapter
+- GoogleMap googleMap
+- com.google.android.gms.location.FusedLocationProviderClient fusedLocationClient
++ void onCreate(Bundle?)
++ void onCreateView(void,LayoutInflater,ViewGroup?,void,Bundle?)
++ void null()
++ void onViewCreated(View,Bundle?)
++ void onMapReady(GoogleMap)
++ void onDestroyView()
+- void setupObservers()
+- void addCinemaMarkers(List<PlaceResult>)
+}
+
+
+class com.example.moviereview.ui.fragments.FavoritesFragment {
+- FragmentFavoritesBinding? _binding
+-  binding
+- HomeViewModel viewModel
++ View onCreateView(LayoutInflater,ViewGroup?,Bundle?)
++ void onViewCreated(View,Bundle?)
++ void onDestroyView()
+}
+
+
+
+
+com.example.moviereview.ui.adapters. <|.. com.example.moviereview.ui.adapters.SearchMovieAdapter
+com.example.moviereview.ui.adapters. <|.. com.example.moviereview.ui.adapters.SearchViewHolder
+com.example.moviereview.ui.adapters.ItemCallback <|-- com.example.moviereview.ui.adapters.SearchDiffCallback
+androidx.fragment.app.Fragment <|-- com.example.moviereview.ui.fragments.SettingsFragment
+com.example.moviereview.ui.adapters. <|.. com.example.moviereview.ui.adapters.TrendingActorAdapter
+com.example.moviereview.ui.adapters. <|.. com.example.moviereview.ui.adapters.ActorViewHolder
+com.example.moviereview.ui.adapters.ItemCallback <|-- com.example.moviereview.ui.adapters.ActorDiffCallback
+com.example.moviereview.ui.fragments.ProfileFragment +.. com.example.moviereview.ui.fragments.ProfileFragment$Companion
+androidx.fragment.app.Fragment <|-- com.example.moviereview.ui.fragments.ProfileFragment
+com.example.moviereview.ui.adapters.CinemaAdapter +.. com.example.moviereview.ui.adapters.CinemaAdapter$CinemaDiffCallback
+com.example.moviereview.ui.adapters.CinemaAdapter +.. com.example.moviereview.ui.adapters.CinemaAdapter$CinemaViewHolder
+com.example.moviereview.ui.adapters.ViewHolder <|-- com.example.moviereview.ui.adapters.CinemaAdapter$CinemaViewHolder
+com.example.moviereview.ui.adapters.Adapter <|-- com.example.moviereview.ui.adapters.CinemaAdapter
+com.example.moviereview.ui.adapters.ViewHolder <|-- com.example.moviereview.ui.adapters.MovieViewHolder
+com.example.moviereview.ui.adapters.ItemCallback <|-- com.example.moviereview.ui.adapters.MovieDiffCallback
+com.example.moviereview.ui.adapters. <|.. com.example.moviereview.ui.adapters.TrendingMovieAdapter
+com.example.moviereview.ui.adapters. <|.. com.example.moviereview.ui.adapters.MovieViewHolder
+com.example.moviereview.ui.adapters.ItemCallback <|-- com.example.moviereview.ui.adapters.MovieDiffCallback
+androidx.fragment.app.Fragment <|-- com.example.moviereview.ui.fragments.HomeFragment
+androidx.fragment.app.Fragment <|-- com.example.moviereview.ui.fragments.DiscoverFragment
+androidx.fragment.app.Fragment <|-- com.example.moviereview.ui.fragments.MovieDetailsFragment
+com.example.moviereview.data.local.MovieDatabase +.. com.example.moviereview.data.local.MovieDatabase$Companion
+androidx.room.RoomDatabase <|-- com.example.moviereview.data.local.MovieDatabase
+androidx.fragment.app.Fragment <|-- com.example.moviereview.ui.fragments.AddEditMovieFragment
+androidx.fragment.app.Fragment <|-- com.example.moviereview.ui.fragments.CinemasFragment
+com.google.android.gms.maps.OnMapReadyCallback <|.. com.example.moviereview.ui.fragments.CinemasFragment
+androidx.fragment.app.Fragment <|-- com.example.moviereview.ui.fragments.FavoritesFragment
+@enduml

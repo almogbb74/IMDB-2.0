@@ -11,7 +11,7 @@ abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 
     companion object {
-        // The Singleton Instance (Volatile ensures thread safety)
+        // The Singleton Instance (Volatile ensures thread safety, always up to date because its read from and written to main memory so if it changes it will be visible immediately  to other threads)
         @Volatile
         private var INSTANCE: MovieDatabase? = null
 

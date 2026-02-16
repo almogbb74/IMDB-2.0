@@ -53,10 +53,10 @@ class MovieDetailsFragment : Fragment() {
             binding.detailRatingBar.rating = movie.score
             binding.tvDetailScore.text = String.format(Locale.getDefault(), "%.1f/5.0", movie.score)
 
-            // Description (The Plot)
+            // Description
             binding.tvDetailDescription.text = movie.description
 
-            // Review (Your Personal Opinion)
+            // Review
             binding.tvDetailReview.text = movie.reviewText
 
             // Load Image

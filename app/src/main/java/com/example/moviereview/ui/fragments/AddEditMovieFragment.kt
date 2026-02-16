@@ -40,7 +40,7 @@ class AddEditMovieFragment : Fragment() {
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
-                // Crucial: We need to ask for permanent permission to read this file
+                // We need to ask for permanent permission to read this file
                 // otherwise the image will disappear when the app restarts.
                 try {
                     val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION

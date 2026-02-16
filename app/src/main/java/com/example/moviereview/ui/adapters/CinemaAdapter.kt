@@ -16,7 +16,6 @@ class CinemaAdapter : RecyclerView.Adapter<CinemaAdapter.CinemaViewHolder>() {
     private var userLocation: LatLng? = null
 
     fun setData(newCinemas: List<PlaceResult>, location: LatLng?) {
-        // Fix the "notifyDataSetChanged" warning using DiffUtil
         val diffCallback = CinemaDiffCallback(this.cinemas, newCinemas)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 

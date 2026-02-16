@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    // Initialize ViewModel using the Factory
+    // Initialize ViewModel
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -112,7 +112,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun showDeleteConfirmationDialog(movie: Movie, position: Int, adapter: LocalMovieAdapter) {
-        // Inflate the Custom Layout
+        // Inflate the Custom dialog
         val dialogView =
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_delete_movie, null)
 
@@ -147,9 +147,9 @@ class HomeFragment : Fragment() {
             dialog.dismiss()
         }
 
-        // Handle "Back Press" or "Click Outside" dismissal
+        // Handle "Back Press" or "Click Outside dialog" dismissal
         dialog.setOnCancelListener {
-            // If they click outside or press back, we ALSO need to restore the item
+            // If they click outside or press back, we also need to restore the item
             adapter.notifyItemChanged(position)
         }
 

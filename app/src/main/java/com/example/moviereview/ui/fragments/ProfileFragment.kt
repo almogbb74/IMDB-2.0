@@ -74,8 +74,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    // --- Helper Functions for Editing Name ---
-
     private fun loadUserName() {
         // Get SharedPreferences (a simple way to save small data)
         val sharedPref = requireActivity().getPreferences(Context.MODE_PRIVATE)
