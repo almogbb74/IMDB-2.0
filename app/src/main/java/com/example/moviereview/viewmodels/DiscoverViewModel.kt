@@ -19,16 +19,16 @@ class DiscoverViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _trendingMovies = MutableLiveData<List<RemoteMovie>?>()
-    val trendingMovies: LiveData<List<RemoteMovie>?> = _trendingMovies
+    val trendingMovies: LiveData<List<RemoteMovie>?> get() = _trendingMovies
 
     private val _trendingActors = MutableLiveData<List<RemoteActor>?>()
-    val trendingActors: LiveData<List<RemoteActor>?> = _trendingActors
+    val trendingActors: LiveData<List<RemoteActor>?> get() = _trendingActors
 
     private val _searchResults = MutableLiveData<List<RemoteMovie>?>()
-    val searchResults: LiveData<List<RemoteMovie>?> = _searchResults
+    val searchResults: LiveData<List<RemoteMovie>?> get() = _searchResults
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> get() = _isLoading
 
     init {
         loadTrendingData()
